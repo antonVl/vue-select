@@ -326,18 +326,22 @@
     </div>
 
     <transition :name="transition">
-      <ul ref="dropdownMenu" v-if="dropdownOpen" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
-        <li v-for="(option, index) in filteredOptions" v-bind:key="index" :class="{ active: isOptionSelected(option), highlight: index === typeAheadPointer }" @mouseover="typeAheadPointer = index">
-          <a @mousedown.prevent="select(option)">
-          <slot name="option" v-bind="option">
-            {{ getOptionLabel(option) }}
-          </slot>
-          </a>
-        </li>
-        <li v-if="!filteredOptions.length" class="no-options">
-          <slot name="no-options">Sorry, no matching options.</slot>
-        </li>
-      </ul>
+        <div ref="dropdownMenu" v-if="dropdownOpen" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
+            <slot name="dropdown">
+                <ul>
+                    <li v-for="(option, index) in filteredOptions" v-bind:key="index" :class="{ active: isOptionSelected(option), highlight: index === typeAheadPointer }" @mouseover="typeAheadPointer = index">
+                        <a @mousedown.prevent="select(option)">
+                            <slot name="option" v-bind="option">
+                                {{ getOptionLabel(option) }}
+                            </slot>
+                        </a>
+                    </li>
+                    <li v-if="!filteredOptions.length&&!inline" class="no-options">
+                        <slot name="no-options">Sorry, no matching options.</slot>
+                    </li>
+                </ul>
+            </slot>
+        </div>
     </transition>
   </div>
 </template>
@@ -359,6 +363,10 @@
        */
       value: {
         default: null
+      },
+
+      inline: {
+        default: false,
       },
 
       /**

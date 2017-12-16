@@ -8,7 +8,7 @@ Vue.use(resource)
 
 Vue.component('v-select', vSelect)
 
-Vue.config.devtools = true
+Vue.config.devtools = true;
 
 /* eslint-disable no-new */
 new Vue({
