@@ -673,7 +673,7 @@
        */
       select(option) {
         if (this.isOptionSelected(option)) {
-          this.deselect(option)
+          return;
         } else {
           if (this.taggable && !this.optionExists(option)) {
             option = this.createOption(option)
