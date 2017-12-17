@@ -34,7 +34,7 @@ module.exports = {
       let pixelsToPointerTop = 0
       if( this.$refs.dropdownMenu ) {
         for (let i = 0; i < this.typeAheadPointer; i++) {
-          pixelsToPointerTop += this.$refs.dropdownMenu.children[i].offsetHeight
+          pixelsToPointerTop += this.$refs.dropdownMenu.children[1].children[i].offsetHeight
         }
       }
       return pixelsToPointerTop

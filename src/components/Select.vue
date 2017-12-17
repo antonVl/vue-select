@@ -327,8 +327,9 @@
 
     <transition :name="transition">
         <div ref="dropdownMenu" v-if="dropdownOpen" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
+            <div class="dropdown-menu-shadow"></div>
             <slot name="dropdown">
-                <ul>
+                <ul class="dropdown-menu-list">
                     <li v-for="(option, index) in filteredOptions" v-bind:key="index" :class="{ active: isOptionSelected(option), highlight: index === typeAheadPointer }" @mouseover="typeAheadPointer = index">
                         <a @mousedown.prevent="select(option)">
                             <slot name="option" v-bind="option">
@@ -665,6 +666,7 @@
      * attach any event listeners.
      */
     created() {
+        console.log('slots in plugin',this.$slots);
 			this.mutableValue = this.value
       this.mutableOptions = this.options.slice(0)
 			this.mutableLoading = this.loading
